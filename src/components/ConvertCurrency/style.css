@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  flex: 1;
+}
+
+input {
+  flex: 1;
+}
+
+button {
+  flex: 1;
+}
+
+p {
+  flex: 1;
+}
