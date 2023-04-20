@@ -1,20 +1,21 @@
-import React from 'react';
-import ConvertCurrency from './components/ConvertCurrency';
+/**
+ * Components
+ */
+import Button from './components/Button';
+/**
+ * Containers
+ */
+import Converter from './containers/Converter';
 
-const App = () => (
-  <>
-    <p>API:
-      <a href="https://economia.awesomeapi.com.br/json/last/USD-BRL">Link</a>
-    </p>
-    <ConvertCurrency
-      ofCurrency="USD"
-      forCurrency="BRL"
-    />
-    <ConvertCurrency
-      ofCurrency="BRL"
-      forCurrency="USD"
-    />
-  </>
-);
+const App = () => {
+  return (    
+    <div>
+      <Converter />
+      {/* <Button>
+        Teste
+      </Button> */}
+    </div>
+  );
+};
 
 export default App;

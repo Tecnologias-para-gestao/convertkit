@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
 
 const ConvertCurrency = props => {
-  const {
-    ofCurrency,
-    forCurrency
-  } = props;
-  const [inputState, inputSetState] = useState(0);
-  const [outputState, outputSetState] = useState(0);
-  const pair = ofCurrency.concat(forCurrency);
+  const { ofCurrency, forCurrency } = props;
+  const [input, setInput] = useState(0);
+  const [output, setOutput] = useState(0);
+
   const handler = () => {
-    const url = `https://economia.awesomeapi.com.br/json/last/${ofCurrency}-${forCurrency}`;
-    fetch(url)
+    fetch(`${process.env.REACT_APP_API_URL}/${ofCurrency}-${forCurrency}`)
       .then(response => response.json())
       .then(data => {
-        const price = data[pair].ask;
-        const result = (parseFloat(inputState * price).toFixed(2));
-        outputSetState(result);
-      })
+        const price = data[ofCurrency.concat(forCurrency)].ask;
+        const result = (parseFloat(input * price).toFixed(2));
+        setOutput(result);
+      });
   }
+
   return (
-    <>
+    <div>
       <h2>{ofCurrency} / {forCurrency}</h2>
       <input
         type="text"
-        onChange={(e) => inputSetState(e.target.value)}
-        value={inputState}
+        onChange={(e) => setInput(e.target.value)}
+        value={input}
       />
       <button onClick={handler}>Convert</button>
-      <p>Result: {outputState}</p>
-    </>
-  )
-}
+      <p>{forCurrency} {output}</p>
+    </div>
+  );
+};
 
 export default ConvertCurrency;
