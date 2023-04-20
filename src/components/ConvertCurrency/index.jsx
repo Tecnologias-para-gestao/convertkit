@@ -4,10 +4,9 @@ const ConvertCurrency = props => {
   const { ofCurrency, forCurrency } = props;
   const [input, setInput] = useState(0);
   const [output, setOutput] = useState(0);
-  const API_URL="https://economia.awesomeapi.com.br/json/last";
 
   const handler = () => {
-    fetch(`${API_URL}/${ofCurrency}-${forCurrency}`)
+    fetch(`${process.env.REACT_APP_API_URL}/${ofCurrency}-${forCurrency}`)
       .then(response => response.json())
       .then(data => {
         const price = data[ofCurrency.concat(forCurrency)].ask;
